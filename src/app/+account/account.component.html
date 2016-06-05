@@ -1,3 +1,67 @@
-<p>
-  account works!
-</p>
+<div class="profile-edit" *ngIf="isEditFormShowing">
+  <md-card>
+    <md-card-title>Edit your profile</md-card-title>
+    <md-card-content>
+      <form #profile="ngForm">
+        <md-input [ngModel]="accountInfo.name" ngControl="name" #name="ngForm" placeholder="Name" required></md-input>
+        <md-input [ngModel]="accountInfo.image" ngControl="image" placeholder="Image Url" required></md-input>
+        <md-input [ngModel]="accountInfo.desc" ngControl="desc" placeholder="Description" required></md-input>
+        <md-radio-group [ngModel]="accountInfo.maritalstatus" ngControl="maritalstatus" required>
+          <md-radio-button value="Single">Single</md-radio-button>
+          <md-radio-button value="Married">Married</md-radio-button>
+        </md-radio-group>
+        <div>
+          <md-checkbox [ngModel]="accountInfo.isFullStack" ngControl="isFullStack" indeterminate="true" required>Full Stack Developer</md-checkbox>
+        </div>
+      </form>
+    </md-card-content>
+    <md-card-actions align="end">
+      <button md-raised-button color="accent" (click)="isEditFormShowing= !isEditFormShowing">Cancel</button>
+      <button md-raised-button color="accent" (click)="submitUserInfo(profile)">POST</button>
+    </md-card-actions>
+  </md-card>
+</div>
+
+
+<div class="profile" *ngIf="!isEditFormShowing">
+  <md-card>
+    <md-card-title>{{accountInfo.name}}</md-card-title>
+    <img md-card-image [alt]="accountInfo.name" src="{{accountInfo.image}}">
+    <md-card-content>
+      {{accountInfo.desc}}
+    </md-card-content>
+    <md-card-actions align="end">
+      <button md-fab (click)="isEditFormShowing= !isEditFormShowing">
+         <md-icon>mode_edit</md-icon>
+      </button>
+    </md-card-actions>
+  </md-card>
+</div>
+
+
+<div class="comment-section">
+  
+  <md-card>
+    <md-card-title>Leave a comment</md-card-title>
+    <md-card-content>
+      <form #commentForm="ngForm">
+        <md-input ngControl="message" placeholder="comment"></md-input>
+      </form>
+    </md-card-content>
+    <md-card-actions align="end">
+      <button md-raised-button color="accent" (click)="submitUserComment(commentForm)">POST</button>
+    </md-card-actions>
+  </md-card>
+  
+  <md-card *ngFor="let comment of comments | async | orderby:'timestamp,desc'">
+    <md-card-content>
+      <div class="comment-image">
+        <img md-card-image [alt]="comment.owner.name" src="{{comment.owner.image}}">
+      </div>
+      <div class="comment-msg">
+        {{comment.message}}
+      </div>
+    </md-card-content>
+  </md-card>
+  
+</div>

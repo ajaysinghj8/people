@@ -1,8 +1,5 @@
 import { Component } from '@angular/core';
-import { PersonComponent } from './+person';
-import { Routes, ROUTER_DIRECTIVES, ROUTER_PROVIDERS} from '@angular/router';
-import { AccountComponent } from './+account';
-
+import { Routes, ROUTER_DIRECTIVES } from '@angular/router';
 import { MdToolbar } from '@angular2-material/toolbar';
 import { MdButton } from '@angular2-material/button';
 import { MD_SIDENAV_DIRECTIVES } from '@angular2-material/sidenav';
@@ -12,11 +9,15 @@ import { MdInput} from '@angular2-material/input';
 import { MdCheckbox} from '@angular2-material/checkbox';
 import { MdRadioButton, MdRadioGroup, MdRadioDispatcher } from '@angular2-material/radio';
 import { MdIcon, MdIconRegistry } from '@angular2-material/icon';
-
 import { FirebaseListObservable } from 'angularfire2';
 
 
-import {Person,PeoplelistService, Orderby, Kicker, AuthService} from './shared';
+
+import { AccountComponent } from './+account';
+import { HomeComponent } from './+home';
+import { PersonComponent } from './+person';
+
+import {AuthService, NotificationService, Orderby} from './shared';
 
 @Component({
   moduleId: module.id,
@@ -34,33 +35,48 @@ import {Person,PeoplelistService, Orderby, Kicker, AuthService} from './shared';
     MdCheckbox,
     MdRadioGroup,
     MdRadioButton,
-    MdIcon],
-  providers: [ROUTER_PROVIDERS, MdIconRegistry, MdRadioDispatcher, PeoplelistService, AuthService],
-  pipes: [Orderby, Kicker]
+    MdIcon
+    ],
+  providers: [MdIconRegistry, MdRadioDispatcher, NotificationService],
+  pipes :[Orderby]
 })
 @Routes([
-  { path: '/person', component: PersonComponent },
-  { path: '/account', component: AccountComponent }
+  { path: '/', component: HomeComponent },
+  { path: '/person/:id', component: PersonComponent },
+  { path: '/account', component: AccountComponent },
+  { path: '/*', component: HomeComponent }
 ])
 export class PeopleAppComponent {
   formShowing: boolean = false;
   views: Object[] = [
     {
+      name: "Home",
+      description: "",
+      icon: "home",
+      route: '/'
+    },
+    {
       name: "My Account",
       description: "Edit my account information",
-      icon: "assignment ind"
+      icon: "assignment ind",
+      route: '/account'
     }
   ];
 
-  people: FirebaseListObservable<Person[]>;
-
-  constructor(public ppl: PeoplelistService, public authService: AuthService) {
-    this.people = ppl.get();
+  notifications: FirebaseListObservable<any[]>;
+  constructor(private authService: AuthService, private notifyService: NotificationService) {
+    this.notifications = this.notifyService.getNotifications();
   }
-  submitCard(profileForm) {
-    this.formShowing = false;
-    var p = <Person>profileForm.value;
-    this.ppl.add(p);
-
+  login() {
+    this.authService.login();
   }
+  get isAuthenticated() {
+    return this.authService.isAuthenticated;
+  }
+  // submitCard(profileForm) {
+  //   this.formShowing = false;
+  //   var p = <Person>profileForm.value;
+  //   this.ppl.add(p);
+
+  // }
 }

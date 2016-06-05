@@ -1,3 +1,39 @@
-<p>
-  person works!
-</p>
+<div class="profile" *ngIf="!isEditFormShowing">
+  <md-card>
+    <md-card-title>{{(user|async)?.name}}</md-card-title>
+    <img md-card-image [alt]="(user|async)?.name" src="{{(user|async)?.image}}">
+    <md-card-content>
+      {{(user|async)?.desc}}
+    </md-card-content>
+    <md-card-actions align="end">
+    </md-card-actions>
+  </md-card>
+</div>
+
+
+<div class="comment-section">
+  
+  <md-card>
+    <md-card-title>Leave a comment</md-card-title>
+    <md-card-content>
+      <form #commentForm="ngForm">
+        <md-input ngControl="message" placeholder="comment"></md-input>
+      </form>
+    </md-card-content>
+    <md-card-actions align="end">
+      <button md-raised-button color="accent" (click)="submitUserComment(commentForm)">POST</button>
+    </md-card-actions>
+  </md-card>
+  
+  <md-card *ngFor="let comment of comments | async | orderby:'timestamp,desc'">
+    <md-card-content>
+      <div class="comment-image">
+        <img md-card-image [alt]="comment.owner.name" src="{{comment.owner.image}}">
+      </div>
+      <div class="comment-msg">
+        {{comment.message}}
+      </div>
+    </md-card-content>
+  </md-card>
+  
+</div>

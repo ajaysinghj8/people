@@ -36,23 +36,7 @@ md-radio-button, md-checkbox {
   flex-grow: 1;
 }
 
-md-card {
-  width: 400px;
-  box-sizing: border-box;
-  margin: 16px;
-  flex-grow: 10;
-}
-
-.card-container {
-  display: flex;
-  flex-flow: row wrap;
-}
 
 .notification-btn{
-  display: -webkit-flex;
-   display: flex;
-   -webkit-flex-direction: row;
-   flex-direction: row;
-   -webkit-justify-content: flex-end;
-   justify-content: flex-end;
+  
 }

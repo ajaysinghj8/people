@@ -7,7 +7,7 @@ export class Kicker implements PipeTransform {
 
   transform(value: any, args?: any): any {
     if (typeof value !== 'string') return value;
-    return value.substr(0, args || 100);
+    return value.substr(0, args || 200);
 
   }
 
