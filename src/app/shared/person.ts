@@ -3,8 +3,9 @@ export interface IPerson {
     image: string,
     desc: string
     id?: string,
+    uid?:string,
     maritalstatus?:string,
-    isFullStack?:string
+    isFullStack?:boolean
 }
 export class Person implements IPerson {
     constructor(
@@ -12,8 +13,9 @@ export class Person implements IPerson {
         public image: string, 
         public desc: string, 
         public id: string,
+        public uid: string,
         public maritalstatus: string,
-        public isFullStack: string
+        public isFullStack: boolean
     ) {
 
     }

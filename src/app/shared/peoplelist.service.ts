@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { AngularFire, FirebaseListObservable } from 'angularfire2';
+import { AngularFire, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2';
 
 import {Person} from './person';
 
@@ -10,11 +10,12 @@ export class PeoplelistService {
   constructor(public af: AngularFire) {
 
   }
-  get(): FirebaseListObservable<Person[]> {
-    return this.af.database.list('/people');
+  getList(): FirebaseListObservable<Person[]> {
+    return this.af.database.list('/user');
   }
-  add(p: Person): void {
-    this.af.database.list('/people').push(p);
+  get(uid:string): FirebaseObjectObservable<any>{
+    return this.af.database.object('/user/'+uid);
   }
+  
 
 }

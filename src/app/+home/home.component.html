@@ -1,0 +1,15 @@
+<div class="card-container">
+  <md-card *ngFor="let pp of people | async | orderby:'name'">
+    <img md-card-image [alt]="pp.name" src="{{pp.image}}">
+    <md-card-title>{{pp.name}}</md-card-title>
+    <md-card-content class="secondary">
+      {{pp.desc| kicker}}
+    </md-card-content>
+    <md-card-actions align="end">
+      <a (click)="toUserProfile(pp)">
+      <button md-button color="primary" >View Profile</button>
+      </a>
+      <button md-button color="primary"></button>
+    </md-card-actions>
+  </md-card>
+</div>
