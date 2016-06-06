@@ -1,0 +1,41 @@
+.profile md-card{
+  width: 94%;
+  box-sizing: border-box;
+  margin: 3%;
+}
+
+.profile md-card img[md-card-image]{
+       /* flex-grow: 0; */
+    display: inline-block;
+    /* flex: 1; */
+    width: 30%;
+    margin: 3%;
+}
+
+.profile md-card md-card-content{
+    display: inline-block;
+    /* flex: 1; */
+    width: 60%;
+    margin: 1%;
+}
+
+.comment-section{
+    width: 94%;
+    box-sizing: border-box;
+    margin: 3%;
+}
+.comment-section md-card{
+    height: 150px;
+    margin: 3%;
+    width: 90%;
+}
+.comment-section md-card .comment-image{
+    height: 100px;
+    width: 100px;
+    margin: 2%;
+}
+.comment-section md-card .comment-msg{
+    height: 100px;
+    width: 60%;
+    margin: 2%;
+}

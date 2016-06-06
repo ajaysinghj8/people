@@ -1,0 +1,42 @@
+
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.secondary {
+  color: rgba(0,0,0,0.54);
+}
+
+[md-fab] {
+  position: absolute;
+  right: 3%;
+  top: 34px;
+  z-index: 1;
+}
+
+md-sidenav-layout {
+  background: rgba(0,0,0,0.03);
+}
+
+md-input {
+  margin: 8px 0;
+  width: 45%;
+}
+
+md-radio-button, md-checkbox {
+  margin: 16px 8px;
+}
+
+.form {
+  display: flex;
+}
+
+.form md-card {
+  flex-grow: 1;
+}
+
+
+.notification-btn{
+  
+}

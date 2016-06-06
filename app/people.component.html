@@ -1,0 +1,40 @@
+<md-sidenav-layout fullscreen>
+  <md-sidenav #sidenav>
+    <md-nav-list>
+      <a md-list-item *ngFor="let view of views" [routerLink]="view.route" (click)="sidenav.close()">
+        <md-icon md-list-icon>{{view.icon}}</md-icon>
+        <span md-line>{{view.name}}</span>
+        <span md-line class="secondary">{{view.description}}</span>
+      </a>
+    </md-nav-list>
+  </md-sidenav>
+  <md-sidenav #notificationsidebar align="end">
+    <md-nav-list>
+      <a md-list-item *ngFor="let notify of notifications|async| orderby:'timestamp,desc'"
+       [routerLink]="['person',notify.uid]"
+       (click)="notificationsidebar.close()"
+      >
+        <!--<md-icon md-list-icon>{{view.icon}}</md-icon>-->
+        <span md-line>{{notify.title}}</span>
+        <span md-line class="secondary">{{notify.message}}</span>
+      </a>
+    </md-nav-list>
+  </md-sidenav>
+  <md-toolbar color="primary">
+    <button md-icon-button (click)="sidenav.open()">
+      <md-icon>menu</md-icon>
+    </button>
+    
+     Srijan
+   
+    <button md-icon-button (click)="notificationsidebar.open()">
+      <md-icon>announcement</md-icon> 
+    </button>
+    
+    <button *ngIf="!isAuthenticated" md-icon-button (click)="login()">
+        login
+    </button>    
+  </md-toolbar>
+  
+<router-outlet></router-outlet>
+</md-sidenav-layout>
