@@ -12,9 +12,9 @@ module.exports = function (defaults) {
       'reflect-metadata/**/*.+(js|js.map)',
       'rxjs/**/*.+(js|js.map)',
       '@angular/**/*.+(js|js.map)',
-      '@angular2-material/**/*.js',
-      'angularfire2/**/*.js',
-      'firebase/lib/*.js'
+      '@angular2-material/**/*.+(js|js.map)',
+      'angularfire2/**/*.+(js|js.map)',
+      'firebase/lib/*.+(js|js.map)'
     ]
   });
 };
