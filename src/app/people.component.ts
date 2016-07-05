@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Routes, ROUTER_DIRECTIVES } from '@angular/router';
+import { Routes, ROUTER_DIRECTIVES , ROUTER_PROVIDERS} from '@angular/router';
 import { MdToolbar } from '@angular2-material/toolbar';
 import { MdButton } from '@angular2-material/button';
 import { MD_SIDENAV_DIRECTIVES } from '@angular2-material/sidenav';
@@ -10,6 +10,7 @@ import { MdCheckbox} from '@angular2-material/checkbox';
 import { MdRadioButton, MdRadioGroup, MdRadioDispatcher } from '@angular2-material/radio';
 import { MdIcon, MdIconRegistry } from '@angular2-material/icon';
 import { FirebaseListObservable } from 'angularfire2';
+import { AboutComponent } from './+about';
 
 
 
@@ -44,7 +45,8 @@ import {AuthService, NotificationService, Orderby} from './shared';
   { path: '/', component: HomeComponent },
   { path: '/person/:id', component: PersonComponent },
   { path: '/account', component: AccountComponent },
-  { path: '/*', component: HomeComponent }
+  { path: '/*', component: HomeComponent },
+  {path: '/about', component: AboutComponent}
 ])
 export class PeopleAppComponent {
   formShowing: boolean = false;
